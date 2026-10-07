@@ -37,7 +37,8 @@ data/                          default home of your plan, history and page (igno
 macos/                         macOS menu bar plugin (SwiftBar) + install.sh
 linux/                         Ubuntu top-bar indicator + install.sh
 windows/                       Windows tray icon + install.ps1
-assets/                        icon
+assets/                        icon (packaged with every release)
+docs/screenshots/              README screenshots (not packaged)
 examples/                      example plan for new installs
 scripts/package.py             builds the per-platform release packages
 td, td.cmd                     command-line shortcut (macOS/Linux, Windows)

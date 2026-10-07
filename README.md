@@ -12,7 +12,7 @@ Built from the [example plan](#try-the-example):
 
 | Menu bar (macOS) | Web page: overview and projects | Web page: timeline |
 |---|---|---|
-| ![The menu bar dropdown: overall %, this week's count and each project's progress](assets/SwiftbarScreenshot.png) | ![The page header, this week's bars, the 6-month activity grid and project progress](assets/WebpageScreenshot1.png) | ![The timeline of finished goals, grouped by week](assets/WebpageScreenshot2.png) |
+| ![The menu bar dropdown: overall %, this week's count and each project's progress](docs/screenshots/SwiftbarScreenshot.png) | ![The page header, this week's bars, the 6-month activity grid and project progress](docs/screenshots/WebpageScreenshot1.png) | ![The timeline of finished goals, grouped by week](docs/screenshots/WebpageScreenshot2.png) |
 
 Your personal files (the plan, `history.jsonl` and the generated `index.html`) live in
 `data/` by default, which git ignores, or in any folder you choose: see
