@@ -14,6 +14,8 @@ Built from the [example plan](#try-the-example):
 |---|---|---|
 | ![The menu bar dropdown: overall %, this week's count and each project's progress](docs/screenshots/SwiftbarScreenshot.png) | ![The page header, this week's bars, the 6-month activity grid and project progress](docs/screenshots/WebpageScreenshot1.png) | ![The timeline of finished goals, grouped by week](docs/screenshots/WebpageScreenshot2.png) |
 
+https://github.com/user-attachments/assets/a93d684e-9637-4a73-806b-a343d5be26ce
+
 Your personal files (the plan, `history.jsonl` and the generated `index.html`) live in
 `data/` by default, which git ignores, or in any folder you choose: see
 [Where your files live](#where-your-files-live).
