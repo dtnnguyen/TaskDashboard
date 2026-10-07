@@ -38,7 +38,7 @@ jobs:
           - os: ubuntu-latest
             python: "3.9"   # oldest supported: the macOS system Python SwiftBar uses
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-python@v6
         with:
