@@ -1,0 +1,12 @@
+# Your plan, history and page: personal, never committed
+data/
+
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.PLAN_AND_PROGRESS.md.*.tmp
+.history.jsonl.lock
+tray_preview.png
+dist/
+.DS_Store

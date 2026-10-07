@@ -1,0 +1,68 @@
+# Push a version tag to publish a release with one package per platform:
+#   1. set the version in src/taskdashboard/__init__.py and pyproject.toml, commit
+#   2. git tag v0.2.0 && git push origin v0.2.0
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    uses: ./.github/workflows/tests.yml
+
+  release:
+    needs: tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write   # to create the release
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Build packages (fails if the tag doesn't match the version)
+        run: python scripts/package.py --out dist --check-tag "$GITHUB_REF_NAME"
+
+      - name: List package contents
+        run: |
+          {
+            echo "## Package contents"
+            for f in dist/*.zip; do echo "### $(basename "$f")"; echo '```'; unzip -Z1 "$f"; echo '```'; done
+            for f in dist/*.tar.gz; do echo "### $(basename "$f")"; echo '```'; tar tzf "$f"; echo '```'; done
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > notes.md <<'NOTES'
+          ## Install
+
+          Download the package for your system, unzip it, and follow `INSTALL.txt` inside:
+
+          | System | Package | Then run |
+          |---|---|---|
+          | macOS | `taskdashboard-*-macos.zip` | `bash macos/install.sh --data ~/Documents/TaskDashboard` (needs SwiftBar) |
+          | Ubuntu | `taskdashboard-*-linux.tar.gz` | `bash linux/install.sh --data ~/Documents/TaskDashboard` |
+          | Windows | `taskdashboard-*-windows.zip` | `powershell -ExecutionPolicy Bypass -File windows\install.ps1 -Data "$HOME\Documents\TaskDashboard"` |
+
+          The first install creates `PLAN_AND_PROGRESS.md` from an example plan in the folder you
+          give, so a newer release can replace the unzipped folder without touching your data.
+          (Without `--data` / `-Data` it uses `data/` inside the unzipped folder.)
+
+          Afterwards, `./td config` (`.\td config` on Windows) shows where your files are, and
+          `./td config --data DIR --move` moves your plan and history somewhere else.
+
+          Check downloads against `SHA256SUMS.txt`.
+          NOTES
+          gh release create "$GITHUB_REF_NAME" dist/* \
+            --title "TaskDashboard $GITHUB_REF_NAME" \
+            --notes-file notes.md \
+            --generate-notes

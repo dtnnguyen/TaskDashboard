@@ -1,0 +1,3 @@
+# Only for the Windows tray icon; the rest of TaskDashboard uses the standard library.
+pystray>=0.19
+pillow>=10.1

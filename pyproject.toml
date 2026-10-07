@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "taskdashboard"
+version = "0.1.0"
+description = "Goals and % completion from PLAN_AND_PROGRESS.md: a menu bar icon and a static index.html."
+readme = "README.md"
+requires-python = ">=3.9"   # macOS system Python, which SwiftBar uses
+dependencies = []           # standard library only
+
+[project.scripts]
+taskdashboard = "taskdashboard.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
