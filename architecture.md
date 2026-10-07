@@ -1,6 +1,8 @@
 # TaskDashboard architecture
 
 How TaskDashboard is put together, and why it's built this way. For installing and using it, see the [README](README.md).
+The original requirements are in [docs/Goals.md](docs/Goals.md), and the first design notes, written before
+the code, in [docs/Implementation_Suggestions.md](docs/Implementation_Suggestions.md).
 
 ## How it fits together
 
@@ -38,7 +40,7 @@ macos/                         macOS menu bar plugin (SwiftBar) + install.sh
 linux/                         Ubuntu top-bar indicator + install.sh
 windows/                       Windows tray icon + install.ps1
 assets/                        icon (packaged with every release)
-docs/screenshots/              README screenshots (not packaged)
+docs/                          requirements (Goals.md), early design notes, README screenshots (not packaged)
 examples/                      example plan for new installs
 scripts/package.py             builds the per-platform release packages
 td, td.cmd                     command-line shortcut (macOS/Linux, Windows)
